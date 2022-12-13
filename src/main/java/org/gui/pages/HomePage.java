@@ -22,10 +22,10 @@ public class HomePage {
         searchBar.sendKeys("Bag");
         searchBar.sendKeys(Keys.ENTER);
 
-        List<WebElement> searchResult = driver.findElements(By.xpath("//a[@data-test-id=\"product-list-item-link\"]"));
+//        List<WebElement> searchResult = driver.findElements(By.xpath("//a[@data-test-id=\"product-list-item-link\"]"));
 
-//        List<WebElement> searchResult = driver.findElements(By.xpath("//a/h3"));
-        
+        List<WebElement> searchResult = driver.findElements(By.xpath("//ul[@id=\"product-list-items\"]/li/div[3]/a/h3"));
+        searchResult.forEach(e -> System.out.println(e.getText()));
 
         driver.quit();
     }
