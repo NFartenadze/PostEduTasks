@@ -1,6 +1,8 @@
 package org.gui.pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +13,8 @@ import java.time.Duration;
 import java.util.List;
 
 public class HomePage {
+    private static final Logger logger = LogManager.getLogger(HomePage.class);
+
     public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -26,7 +30,7 @@ public class HomePage {
 
         //searched items list
         List<WebElement> searchResult = driver.findElements(By.xpath("//ul[@id=\"product-list-items\"]/li/div[3]/a/h3"));
-        searchResult.forEach(e -> System.out.println(e.getText()));
+        searchResult.forEach(e -> logger.info(e.getText()));
 
 
         driver.quit();
