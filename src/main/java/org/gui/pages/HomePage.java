@@ -22,13 +22,12 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void quit() {
+    public void quitBrowser() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.quit();
     }
 
     public void open() {
-
 //        WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.chrome.driver", "/Users/nikafartenadze/Desktop/selenium/chromedriver");
         driver = new ChromeDriver();
