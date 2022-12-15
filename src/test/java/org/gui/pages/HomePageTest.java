@@ -17,7 +17,7 @@ public class HomePageTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setBrowserName("chrome");
         try {
-            driver = new RemoteWebDriver(new URL("http://192.168.0.102:4444"), caps);
+            driver = new RemoteWebDriver(new URL("http://10.10.146.218:4444"), caps);
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.searchBarType("BAG");
