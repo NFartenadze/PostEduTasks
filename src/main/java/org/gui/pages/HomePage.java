@@ -13,9 +13,9 @@ public class HomePage {
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
     protected WebDriver driver;
-    By searchResult = By.xpath("//ul[@id=\"product-list-items\"]/li/div[3]/a/h3");
+    By searchResult = By.xpath("//ul[@id='product-list-items']/li/div[3]/a/h3");
     By searchInput = By.xpath("//input['data-test-id=\"search-box\"']");
-    By searchButton = By.xpath("//button[@type=\"submit\"]");
+    By searchButton = By.xpath("//button[@type='submit']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
