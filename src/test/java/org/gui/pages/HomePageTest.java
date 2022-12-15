@@ -7,10 +7,10 @@ public class HomePageTest extends BaseClass {
 
     @Test()
     public void SearchBags() {
+        HomePage homePage = new HomePage();
         homePage.searchBarType("BAG");
         homePage.clickSearch();
         Assert.assertEquals(homePage.getSearchResult().size(), 24);
-//            homePage.getSearchResult();
         homePage.printResultItemTexts();
     }
 
