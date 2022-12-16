@@ -1,4 +1,4 @@
-package org.gui.pages;
+package org.gui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -59,14 +59,14 @@ public class BaseTest {
 //            System.setProperty("webdriver.chrome.driver", "/Users/nikafartenadze/Desktop/selenium/chromedriver");
             caps.setBrowserName(browserName);
             driver = new RemoteWebDriver(new URL(seleniumServer), caps);
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
         driver.manage().window().maximize();
         driver.get(url);
     }
 
     public void enterTextBy(By by, String text) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(by));
         driver.findElement(by).sendKeys(text);
     }

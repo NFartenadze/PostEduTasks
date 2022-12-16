@@ -2,7 +2,7 @@
 <suite verbose="1" name="HomePage Tests" parallel="methods" thread-count="4">
     <test name="HomePage">
         <classes>
-            <class name="org.gui.pages.HomePageTest" />
+            <class name="org.gui.pages.Practise"/>
         </classes>
     </test>
 </suite>

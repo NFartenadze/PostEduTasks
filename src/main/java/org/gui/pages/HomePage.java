@@ -2,6 +2,7 @@ package org.gui.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gui.BaseTest;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -16,20 +17,21 @@ public class HomePage extends BaseTest {
 
 
     public List getSearchResult() {
-        return driver.findElements(searchResult);
+        return BaseTest.driver.findElements(searchResult);
     }
 
     public void printResultItemTexts() {
-        driver.findElements(searchResult)
+        BaseTest.driver.findElements(searchResult)
                 .forEach(e -> logger.info(e.getText()));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        BaseTest.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    public void searchBarType(String s) {
+    public void typeInSearchBar(String s) {
         enterTextBy(searchBar, s);
     }
 
+
     public void clickSearch() {
-        driver.findElement(searchButton).click();
+        BaseTest.driver.findElement(searchButton).click();
     }
 }

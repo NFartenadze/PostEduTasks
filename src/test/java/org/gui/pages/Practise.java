@@ -3,15 +3,21 @@ package org.gui.pages;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomePageTest extends BaseClass {
+public class Practise extends BaseClass {
 
-    @Test()
+    @Test
     public void SearchBags() {
         HomePage homePage = new HomePage();
-        homePage.searchBarType("BAG");
+        homePage.typeInSearchBar("BAG");
         homePage.clickSearch();
         Assert.assertEquals(homePage.getSearchResult().size(), 24);
         homePage.printResultItemTexts();
+    }
+
+    @Test
+    public void addItemToCart() {
+        HomePage homePage = new HomePage();
+        homePage.typeInSearchBar("");
     }
 
 
