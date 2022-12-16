@@ -1,6 +1,6 @@
 package org.gui.pages;
 
-import org.gui.BaseTest;
+import com.solvd.gui.BaseTest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

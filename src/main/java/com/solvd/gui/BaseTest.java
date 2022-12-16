@@ -1,4 +1,4 @@
-package org.gui;
+package com.solvd.gui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -51,7 +51,7 @@ public class BaseTest {
 
 
         String browserName = "chrome";
-        String seleniumServer = "http://172.20.10.2:4444";
+        String seleniumServer = "http://192.168.100.22:4444";
         String url = "https://us.puma.com/us/en";
 
         if (browserName.equals("chrome")) {
