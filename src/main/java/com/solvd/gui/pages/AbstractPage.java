@@ -30,6 +30,11 @@ public abstract class AbstractPage {
 
     }
 
+    public void scrollTo(WebElement e) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(e);
+        actions.perform();
+    }
 
     protected void hover(WebElement element) {
         String name = element.getAccessibleName();

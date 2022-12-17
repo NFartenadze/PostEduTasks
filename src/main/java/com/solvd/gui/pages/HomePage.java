@@ -9,17 +9,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
-import java.util.List;
 
 public class HomePage extends AbstractPage {
 
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
-    @FindBy(xpath = "//ul[@id='product-list-items']/li/div[3]/a/h3")
-    private List<WebElement> searchResult;
-
     @FindBy(xpath = "//input['data-test-id=\"search-box\"']")
     private WebElement searchBar;
+
+    @FindBy(xpath = "//button[@data-test-id='location-check-stay-on-country']")
+    private WebElement stayOnRegion;
 
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement searchButton;
@@ -31,18 +30,13 @@ public class HomePage extends AbstractPage {
         setPageURL(Configuration.getProperty("url"));
     }
 
-    public int getSearchResultSize() {
-        return searchResult.size();
-    }
-
-    public void printResultItemTexts() {
-        searchResult
-                .forEach(e -> logger.info(e.getText()));
-        super.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
 
     public boolean isSearchBarPresent() {
         return searchBar.isDisplayed();
+    }
+
+    public void clickStayOnRegion() {
+        stayOnRegion.click();
     }
 
     public void typeInSearchBar(String s) {
