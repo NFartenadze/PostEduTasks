@@ -23,7 +23,7 @@ public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement searchButton;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//div[@data-test-id='main-nav-bar']/ul")
     private WebElement navigationBar;
 
     public HomePage(WebDriver driver) {
@@ -51,14 +51,11 @@ public class HomePage extends AbstractPage {
 
     }
 
-    public void hoverNavigationBar() {
+    public NavigationBar hoverNavigationBar() {
         hover(navigationBar);
+        return new NavigationBar(getDriver());
     }
 
-
-    public NavigationBar getNavigationBar() {
-        return new NavigationBar();
-    }
 
     public void clickSearch() {
         click(this.searchButton);

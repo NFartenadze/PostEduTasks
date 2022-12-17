@@ -1,5 +1,6 @@
 package org.gui.pages;
 
+import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.HomePage;
 import com.solvd.gui.service.WebDriverPool;
 import org.openqa.selenium.WebDriver;
@@ -23,13 +24,27 @@ public class Practise extends AbstractTest {
     }
 
     @Test
-    public void addItemToCart() {
+    public void navigateToWomenShoesSection() {
         WebDriver driver = WebDriverPool.get();
         HomePage homePage = new HomePage(driver);
-        homePage.typeInSearchBar("Bag");
-        homePage.clickSearch();
-        Assert.assertEquals(homePage.getSearchResultSize(), 24);
+        homePage.open();
+        NavigationBar navigationBar = homePage.hoverNavigationBar();
+        Assert.assertTrue(navigationBar.isWomenLinkPresent(), "Woman Link isn't present");
+        navigationBar.hoverWomenLink();
+        Assert.assertTrue(navigationBar.isShoesElementPresent(), "Women shoes link isn't present in panel");
+        navigationBar.clickShoes();
+    }
 
+    @Test
+    public void addManShoeToCart() {
+        WebDriver driver = WebDriverPool.get();
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        NavigationBar navigationBar = homePage.hoverNavigationBar();
+        Assert.assertTrue(navigationBar.isMenLinkPresent(), "Woman Link isn't present");
+        navigationBar.hoverMenLink();
+        Assert.assertTrue(navigationBar.isShoesElementPresent(), "Women shoes link isn't present in panel");
+        navigationBar.clickShoes();
     }
 
 

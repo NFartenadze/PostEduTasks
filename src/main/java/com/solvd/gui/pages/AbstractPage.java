@@ -26,7 +26,10 @@ public abstract class AbstractPage {
 
     public void open() {
         this.driver.get(this.pageURL);
+        this.driver.manage().window().fullscreen();
+
     }
+
 
     protected void hover(WebElement element) {
         String name = element.getAccessibleName();
@@ -55,6 +58,7 @@ public abstract class AbstractPage {
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
+
 
     public String getPageURL() {
         return this.pageURL;
