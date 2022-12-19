@@ -23,11 +23,15 @@ public class LanguagePanel extends AbstractPage {
         click(searchedLanguage);
     }
 
+    public boolean checkResult() {
+        return searchedLanguage.isDisplayed();
+    }
+
     public boolean isSearchFieldPresent() {
         return searchField.isDisplayed();
     }
 
-    public void searchLanguage(String s) {
+    public void typeInSearch(String s) {
         sendKeys(searchField, s);
     }
 

@@ -1,6 +1,7 @@
 package org.gui.pages;
 
 import com.solvd.gui.components.AccountPanel;
+import com.solvd.gui.components.LanguagePanel;
 import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.HomePage;
 import com.solvd.gui.pages.ItemPage;
@@ -95,10 +96,28 @@ public class Practise extends AbstractTest {
         }
     }
 
-//    @Test
-//    public void changeLanguage() {
-//
-//    }
+    @Test
+    public void changeLanguage() throws IOException {
+        WebDriver driver = WebDriverPool.get();
+        try {
+            HomePage homePage = new HomePage(driver);
+            homePage.open();
+            homePage.clickStayOnRegion();
+            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
+            AccountPanel accountPanel = homePage.clickAccountButton();
+            Assert.assertTrue(accountPanel.isLanguagePresent(), "Language isn't present");
+            LanguagePanel languagePanel = accountPanel.clickLanguage();
+            Assert.assertTrue(languagePanel.isSearchFieldPresent(), "Search field is missing");
+            languagePanel.typeInSearch("spanish");
+            Assert.assertTrue(languagePanel.isSearchButtonPresent());
+            languagePanel.clickSearchButton();
+            Assert.assertTrue(languagePanel.checkResult());
+            languagePanel.clickSearchedLanguage();
+        } catch (Exception e) {
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+        }
+    }
 
 
 }
