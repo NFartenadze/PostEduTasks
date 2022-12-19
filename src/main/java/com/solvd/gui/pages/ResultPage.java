@@ -32,7 +32,7 @@ public class ResultPage extends AbstractPage {
     }
 
     public void clickItem(int i) {
-        scrollTo(items.get(i + 1));
+        scrollTo(items.get(i));
         click(items.get(i));
     }
 
