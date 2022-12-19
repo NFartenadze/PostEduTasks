@@ -1,5 +1,6 @@
 package org.gui.pages;
 
+import com.solvd.gui.components.AccountPanel;
 import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.HomePage;
 import com.solvd.gui.pages.ItemPage;
@@ -76,6 +77,28 @@ public class Practise extends AbstractTest {
             FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
         }
     }
+
+    @Test
+    public void registration() throws IOException {
+        WebDriver driver = WebDriverPool.get();
+        try {
+            HomePage homePage = new HomePage(driver);
+            homePage.open();
+            homePage.clickStayOnRegion();
+            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
+            AccountPanel accountPanel = homePage.clickAccountButton();
+            Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Register button isn't present");
+            accountPanel.clickRegisterButton();
+        } catch (Exception e) {
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+        }
+    }
+
+//    @Test
+//    public void changeLanguage() {
+//
+//    }
 
 
 }

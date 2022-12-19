@@ -1,5 +1,6 @@
 package com.solvd.gui.pages;
 
+import com.solvd.gui.components.AccountPanel;
 import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.service.Configuration;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +15,8 @@ public class HomePage extends AbstractPage {
 
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
+    @FindBy(xpath = "//button[@id = \"account-button\"]")
+    private WebElement accountButton;
     @FindBy(xpath = "//input['data-test-id=\"search-box\"']")
     private WebElement searchBar;
 
@@ -30,6 +33,14 @@ public class HomePage extends AbstractPage {
         setPageURL(Configuration.getProperty("url"));
     }
 
+    public boolean isAccountButtonPresent() {
+        return accountButton.isDisplayed();
+    }
+
+    public AccountPanel clickAccountButton() {
+        click(accountButton);
+        return new AccountPanel(getDriver());
+    }
 
     public boolean isSearchBarPresent() {
         return searchBar.isDisplayed();
