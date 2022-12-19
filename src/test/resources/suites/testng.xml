@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="HomePage Tests" parallel="methods" thread-count="4">
-    <test name="HomePage">
+<suite verbose="1" name="puma tests" parallel="methods" thread-count="4">
+    <test name="puma">
         <classes>
-            <class name="org.gui.pages.HomePageTest" />
+            <class name="org.gui.pages.Practise"/>
         </classes>
     </test>
 </suite>
