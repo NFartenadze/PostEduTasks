@@ -14,6 +14,6 @@ public class ItemPage extends AbstractPage {
 
     public void addToCart() {
         scrollTo(cartButton);
-        cartButton.click();
+        click(cartButton);
     }
 }

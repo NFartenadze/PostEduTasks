@@ -2,12 +2,13 @@ package com.solvd.gui.service;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class WebDriverPool {
-    private static final Map<Long, WebDriver> threadDriver = new HashMap<>();
+    private static final Map<Long, WebDriver> threadDriver = Collections.synchronizedMap(new HashMap<>());
 
     public static WebDriver get() {
         return threadDriver.get(Thread.currentThread().getId());

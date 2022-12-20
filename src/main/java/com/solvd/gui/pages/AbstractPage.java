@@ -3,6 +3,7 @@ package com.solvd.gui.pages;
 import com.solvd.gui.service.WebDriverPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -50,9 +51,16 @@ public abstract class AbstractPage {
         LOGGER.info(name + " was clicked.");
     }
 
+
     protected void sendKeys(WebElement element, String string) {
         String name = element.getAccessibleName();
         new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(element)).sendKeys(string);
+        LOGGER.info(name + " was written in" + element.getAccessibleName());
+    }
+
+    protected void enterElement(WebElement element) {
+        String name = element.getAccessibleName();
+        new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(element)).sendKeys(Keys.ENTER);
         LOGGER.info(name + " was written in" + element.getAccessibleName());
     }
 

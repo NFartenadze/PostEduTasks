@@ -39,6 +39,7 @@ public class HomePage extends AbstractPage {
 
     public AccountPanel clickAccountButton() {
         click(accountButton);
+        accountButton.sendKeys("");
         return new AccountPanel(getDriver());
     }
 
@@ -47,13 +48,12 @@ public class HomePage extends AbstractPage {
     }
 
     public void clickStayOnRegion() {
-        stayOnRegion.click();
+        click(stayOnRegion);
     }
 
     public void typeInSearchBar(String s) {
 //        sendKeys(searchBar, s);
-        sendKeys(this.searchBar, s);
-
+        sendKeys(searchBar, s);
     }
 
     public NavigationBar hoverNavigationBar() {

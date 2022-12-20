@@ -6,6 +6,7 @@ import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.HomePage;
 import com.solvd.gui.pages.ItemPage;
 import com.solvd.gui.pages.ResultPage;
+import com.solvd.gui.service.Configuration;
 import com.solvd.gui.service.WebDriverPool;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class Practise extends AbstractTest {
+public class Puma extends AbstractTest {
 
 
     @Test
@@ -115,7 +116,24 @@ public class Practise extends AbstractTest {
             languagePanel.clickSearchedLanguage();
         } catch (Exception e) {
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+            FileUtils.copyFile(screenshotFile, new File(Configuration.getProperty("screenshot")));
+        }
+    }
+
+    @Test
+    public void registrationForm() throws IOException {
+        WebDriver driver = WebDriverPool.get();
+        try {
+            HomePage homePage = new HomePage(driver);
+            homePage.open();
+            homePage.clickStayOnRegion();
+            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
+            AccountPanel accountPanel = homePage.clickAccountButton();
+            Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Registration Button isn't present");
+            accountPanel.clickRegisterButton();
+        } catch (Exception e) {
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File(Configuration.getProperty("screenshot")));
         }
     }
 
