@@ -20,6 +20,7 @@ public class DashboardPage extends AbstractPage {
 
     public DashboardPage(WebDriver driver) {
         super(driver);
+        setPageURL(driver.getCurrentUrl());
     }
 
     public AddressBookPage clickAddNew() {

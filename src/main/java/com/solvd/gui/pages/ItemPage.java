@@ -10,6 +10,7 @@ public class ItemPage extends AbstractPage {
 
     public ItemPage(WebDriver driver) {
         super(driver);
+        setPageURL(driver.getCurrentUrl());
     }
 
     public void addToCart() {

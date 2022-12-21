@@ -1,6 +1,7 @@
 package com.solvd.gui.components;
 
 import com.solvd.gui.pages.AbstractPage;
+import com.solvd.gui.pages.LoginPage;
 import com.solvd.gui.pages.RegistrationPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,8 +49,9 @@ public class AccountPanel extends AbstractPage {
         return accountMenuItems.get(i.getItemIndex()).isDisplayed();
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         click(loginButton);
+        return new LoginPage(getDriver());
     }
 
     public RegistrationPage clickRegisterButton() {

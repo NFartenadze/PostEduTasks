@@ -13,7 +13,6 @@ public class AddressBookPage extends AbstractPage {
     private WebElement addressTitleField;
     @FindBy(xpath = "//select[@id='address-form-country-select']/option")
     private List<WebElement> country;
-
     @FindBy(xpath = "//input[@id='firstName-input']")
     private WebElement firstName;
     @FindBy(xpath = "//input[@id='lastName-input']")
@@ -42,11 +41,24 @@ public class AddressBookPage extends AbstractPage {
 
     public AddressBookPage(WebDriver driver) {
         super(driver);
+        setPageURL(driver.getCurrentUrl());
     }
 
     public void selectState(States s) {
         Select stateDropDown = new Select(state);
         stateDropDown.selectByVisibleText(s.getState());
+    }
+
+    public boolean isPhoneNumberFieldPresent() {
+        return phoneNumber.isDisplayed();
+    }
+
+    public void typePhoneNumber(String s) {
+        sendKeys(phoneNumber, s);
+    }
+
+    public boolean isPostalCodeFieldPresent() {
+        return postalCode.isDisplayed();
     }
 
     public void clickBackToMyAccountButton() {
@@ -85,6 +97,18 @@ public class AddressBookPage extends AbstractPage {
         return companyInfo.isDisplayed();
     }
 
+    public boolean isSaveBtnPresent() {
+        return saveButton.isDisplayed();
+    }
+
+    public void clickSaveBtn() {
+        click(saveButton);
+    }
+
+    public boolean isCityFieldPresent() {
+        return city.isDisplayed();
+    }
+
     public void typeStreetNumber(String s) {
         sendKeys(streetNumber, s);
     }
@@ -105,5 +129,9 @@ public class AddressBookPage extends AbstractPage {
         sendKeys(postalCode, s);
     }
 
+    public void selectCountry(int i) {
+        country.get(i).click();
+        country.get(i).click();
+    }
 
 }
