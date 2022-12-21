@@ -6,7 +6,7 @@ import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.HomePage;
 import com.solvd.gui.pages.ItemPage;
 import com.solvd.gui.pages.ResultPage;
-import com.solvd.gui.service.Configuration;
+import com.solvd.gui.service.Screenshot;
 import com.solvd.gui.service.WebDriverPool;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -67,16 +67,15 @@ public class Puma extends AbstractTest {
             homePage.open();
             homePage.clickStayOnRegion();
             Assert.assertTrue(homePage.isSearchBarPresent(), "search bar isn't present");
-            homePage.typeInSearchBar("Shoes");
+            homePage.typeInSearchBar("qweiqwkehjqgwglke");
             homePage.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
             resultPage.closeCookiePanel();
-            resultPage.clickItem(1);
+            resultPage.clickItem(0);
             ItemPage itemPage = new ItemPage(driver);
             itemPage.addToCart();
         } catch (Exception e) {
-            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+            Screenshot.takeScreenshot(driver);
         }
     }
 
@@ -92,8 +91,7 @@ public class Puma extends AbstractTest {
             Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Register button isn't present");
             accountPanel.clickRegisterButton();
         } catch (Exception e) {
-            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+            Screenshot.takeScreenshot(driver);
         }
     }
 
@@ -115,8 +113,7 @@ public class Puma extends AbstractTest {
             Assert.assertTrue(languagePanel.checkResult());
             languagePanel.clickSearchedLanguage();
         } catch (Exception e) {
-            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File(Configuration.getProperty("screenshot")));
+            Screenshot.takeScreenshot(driver);
         }
     }
 
@@ -132,8 +129,7 @@ public class Puma extends AbstractTest {
             Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Registration Button isn't present");
             accountPanel.clickRegisterButton();
         } catch (Exception e) {
-            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File(Configuration.getProperty("screenshot")));
+            Screenshot.takeScreenshot(driver);
         }
     }
 
