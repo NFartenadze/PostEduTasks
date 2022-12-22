@@ -72,6 +72,9 @@ public abstract class AbstractPage {
         this.driver = driver;
     }
 
+    public boolean isDisplayed(WebElement element) {
+        return new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(element)).isDisplayed();
+    }
 
     public String getPageURL() {
         return this.pageURL;

@@ -1,6 +1,7 @@
 package com.solvd.gui.pages;
 
 import com.solvd.gui.components.States;
+import com.solvd.gui.service.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,7 @@ public class AddressBookPage extends AbstractPage {
 
     public AddressBookPage(WebDriver driver) {
         super(driver);
-        setPageURL(driver.getCurrentUrl());
+        setPageURL(Configuration.getProperty("url") + "/account/addresses/add-address");
     }
 
     public void selectState(States s) {
@@ -50,7 +51,7 @@ public class AddressBookPage extends AbstractPage {
     }
 
     public boolean isPhoneNumberFieldPresent() {
-        return phoneNumber.isDisplayed();
+        return isDisplayed(phoneNumber);
     }
 
     public void typePhoneNumber(String s) {
@@ -58,7 +59,7 @@ public class AddressBookPage extends AbstractPage {
     }
 
     public boolean isPostalCodeFieldPresent() {
-        return postalCode.isDisplayed();
+        return isDisplayed(postalCode);
     }
 
     public void clickBackToMyAccountButton() {
@@ -78,27 +79,27 @@ public class AddressBookPage extends AbstractPage {
     }
 
     public boolean isFirstNameFieldPresent() {
-        return firstName.isDisplayed();
+        return isDisplayed(firstName);
     }
 
     public boolean isLastNameFieldPresent() {
-        return lastName.isDisplayed();
+        return isDisplayed(lastName);
     }
 
     public boolean isAddressTitleFieldPresent() {
-        return addressTitleField.isDisplayed();
+        return isDisplayed(addressTitleField);
     }
 
     public boolean isStreetNumberFieldPresent() {
-        return streetNumber.isDisplayed();
+        return isDisplayed(streetNumber);
     }
 
     public boolean isCompanyInfoFieldPresent() {
-        return companyInfo.isDisplayed();
+        return isDisplayed(companyInfo);
     }
 
     public boolean isSaveBtnPresent() {
-        return saveButton.isDisplayed();
+        return isDisplayed(saveButton);
     }
 
     public void clickSaveBtn() {
@@ -106,7 +107,7 @@ public class AddressBookPage extends AbstractPage {
     }
 
     public boolean isCityFieldPresent() {
-        return city.isDisplayed();
+        return isDisplayed(city);
     }
 
     public void typeStreetNumber(String s) {

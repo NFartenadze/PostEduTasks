@@ -1,24 +1,25 @@
 package com.solvd.gui.pages;
 
+import com.solvd.gui.service.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"email\"]")
     private WebElement loginField;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"password\"]")
     private WebElement passwordField;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"rememberMe\"]")
     private WebElement rememberCredentialsCheckbox;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//button[@id=\"login-submit\"]")
     private WebElement loginBtn;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//button[@data-test-id=\"forgotten-password-link\"]")
     private WebElement forgotPasswordBtn;
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        setPageURL(driver.getCurrentUrl());
+        setPageURL(Configuration.getProperty("url") + "/account/login?action=login");
     }
 
     public void clickLoginBtn() {
@@ -42,23 +43,23 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isLoginBtnPresent() {
-        return loginBtn.isDisplayed();
+        return isDisplayed(loginBtn);
     }
 
     public boolean isForgotPasswordBtnPresent() {
-        return forgotPasswordBtn.isDisplayed();
+        return isDisplayed(forgotPasswordBtn);
     }
 
     public boolean isRememberCredentialsCheckboxPresent() {
-        return rememberCredentialsCheckbox.isDisplayed();
+        return isDisplayed(rememberCredentialsCheckbox);
     }
 
     public boolean isPasswordFieldPresent() {
-        return passwordField.isDisplayed();
+        return isDisplayed(passwordField);
     }
 
     public boolean isLoginFieldPresent() {
-        return loginField.isDisplayed();
+        return isDisplayed(loginField);
     }
 
 }

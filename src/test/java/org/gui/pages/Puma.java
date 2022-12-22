@@ -6,14 +6,10 @@ import com.solvd.gui.components.NavigationBar;
 import com.solvd.gui.pages.*;
 import com.solvd.gui.service.Screenshot;
 import com.solvd.gui.service.WebDriverPool;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Puma extends AbstractTest {
@@ -34,8 +30,8 @@ public class Puma extends AbstractTest {
             Assert.assertEquals(resultPage.getAmountOfItems(), 24);
             resultPage.printResultItemTexts();
         } catch (Exception e) {
-            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("/Users/nikafartenadze/Desktop/Projects/untitled/src/test/resources/errorimgs.png"));
+            Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -53,6 +49,7 @@ public class Puma extends AbstractTest {
             navigationBar.clickShoes();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -64,7 +61,7 @@ public class Puma extends AbstractTest {
             homePage.open();
             homePage.clickStayOnRegion();
             Assert.assertTrue(homePage.isSearchBarPresent(), "search bar isn't present");
-            homePage.typeInSearchBar("qweiqwkehjqgwglke");
+            homePage.typeInSearchBar("shoes");
             homePage.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
             resultPage.closeCookiePanel();
@@ -73,6 +70,7 @@ public class Puma extends AbstractTest {
             itemPage.addToCart();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -86,9 +84,20 @@ public class Puma extends AbstractTest {
             Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
             AccountPanel accountPanel = homePage.clickAccountButton();
             Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Register button isn't present");
-            accountPanel.clickRegisterButton();
+            RegistrationPage registrationPage = accountPanel.clickRegisterButton();
+            Assert.assertTrue(registrationPage.isFirstNameFieldPresent(), "first name field isn't present");
+            registrationPage.typeFirstName("john");
+            Assert.assertTrue(registrationPage.isLastNameFieldPresent(), "last name field isn't present");
+            registrationPage.typeLastName("Doe");
+            Assert.assertTrue(registrationPage.isEmailFieldPresent(), "email field isn't present");
+            registrationPage.typeEmail("john1148@gmail.com");
+            Assert.assertTrue(registrationPage.isPasswordFieldPresent(), "password field isn't present");
+            registrationPage.typePassword("john11");
+            Assert.assertTrue(registrationPage.isRegisterButtonPresent(), "register button isn't present");
+            registrationPage.clickRegister();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -111,6 +120,7 @@ public class Puma extends AbstractTest {
             languagePanel.clickSearchedLanguage();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -127,6 +137,7 @@ public class Puma extends AbstractTest {
             RegistrationPage registrationPage = accountPanel.clickRegisterButton();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
         }
     }
 
@@ -151,7 +162,6 @@ public class Puma extends AbstractTest {
             loginPage.typePassword("john1148");
             Assert.assertTrue(loginPage.isLoginBtnPresent(), "login button isn't present");
             loginPage.clickLoginBtn();
-
             homePage.clickAccountButton();
             Assert.assertTrue(accountPanel.isMenuItemPresent(AccountPanel.MenuItems.MY_ACCOUNT), "My Account isn't present");
             accountPanel.clickMenuItem(AccountPanel.MenuItems.MY_ACCOUNT);
@@ -159,7 +169,6 @@ public class Puma extends AbstractTest {
             //account dashboard page
             DashboardPage dashboardPage = new DashboardPage(accountPanel.getDriver());
             Assert.assertTrue(dashboardPage.isAddNewPresent(), "add new button isn't present");
-
             //address book page
             AddressBookPage addressBookPage = dashboardPage.clickAddNew();
             Assert.assertTrue(addressBookPage.isAddressTitleFieldPresent(), "address title field isn't present");
@@ -181,7 +190,6 @@ public class Puma extends AbstractTest {
             addressBookPage.typePhoneNumber("5555555555");
             Assert.assertTrue(addressBookPage.isSaveBtnPresent(), "address title field isn't present");
             addressBookPage.clickSaveBtn();
-
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
         }

@@ -1,5 +1,6 @@
 package com.solvd.gui.pages;
 
+import com.solvd.gui.service.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ public class RegistrationPage extends AbstractPage {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        setPageURL(driver.getCurrentUrl());
+        setPageURL(Configuration.getProperty("url") + "/account/login?action=register");
     }
 
     public boolean isFirstNameFieldPresent() {
@@ -59,5 +60,9 @@ public class RegistrationPage extends AbstractPage {
 
     public void typePassword(String s) {
         sendKeys(passwordField, s);
+    }
+
+    public void clickRegister() {
+        click(registerButton);
     }
 }

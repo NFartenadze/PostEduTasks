@@ -13,6 +13,10 @@ public class ItemPage extends AbstractPage {
         setPageURL(driver.getCurrentUrl());
     }
 
+    public boolean isCartButtonPresent() {
+        return isDisplayed(cartButton);
+    }
+
     public void addToCart() {
         scrollTo(cartButton);
         click(cartButton);

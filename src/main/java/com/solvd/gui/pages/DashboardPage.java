@@ -1,5 +1,6 @@
 package com.solvd.gui.pages;
 
+import com.solvd.gui.service.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class DashboardPage extends AbstractPage {
 
     public DashboardPage(WebDriver driver) {
         super(driver);
-        setPageURL(driver.getCurrentUrl());
+        setPageURL(Configuration.getProperty("url") + "/account");
     }
 
     public AddressBookPage clickAddNew() {
@@ -38,15 +39,15 @@ public class DashboardPage extends AbstractPage {
 
 
     public boolean isEditProfilePresent() {
-        return editProfile.isDisplayed();
+        return isDisplayed(editProfile);
     }
 
     public boolean isEditPasswordPresent() {
-        return editPassword.isDisplayed();
+        return isDisplayed(editPassword);
     }
 
     public boolean isAddNewPresent() {
-        return addNew.isDisplayed();
+        return isDisplayed(addNew);
     }
 
 

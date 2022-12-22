@@ -34,7 +34,7 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isAccountButtonPresent() {
-        return accountButton.isDisplayed();
+        return isDisplayed(accountButton);
     }
 
     public AccountPanel clickAccountButton() {
@@ -44,7 +44,7 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isSearchBarPresent() {
-        return searchBar.isDisplayed();
+        return isDisplayed(searchBar);
     }
 
     public void clickStayOnRegion() {

@@ -21,7 +21,7 @@ public class AccountPanel extends AbstractPage {
     private WebElement language;
     @FindBy(xpath = "//a[@data-test-id='login-button']")
     private WebElement loginButton;
-    @FindBy(xpath = "//a[@data-test-id='register-button']")
+    @FindBy(xpath = "//a[contains(text(),'Register here')]")
     private WebElement registerButton;
 
     public AccountPanel(WebDriver driver) {
@@ -33,6 +33,7 @@ public class AccountPanel extends AbstractPage {
     }
 
     public LanguagePanel clickLanguage() {
+        click(language);
         logger.info("language button clicked");
         return new LanguagePanel(getDriver());
     }
