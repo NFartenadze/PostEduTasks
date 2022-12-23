@@ -33,8 +33,9 @@ public class NavigationBar extends AbstractPage {
         super(driver);
     }
 
-    public void hoverWomenLink() {
+    public void hoverWomenLink() throws InterruptedException {
         hover(women);
+        Thread.sleep(3000);
     }
 
     public boolean isShoesElementPresent() {

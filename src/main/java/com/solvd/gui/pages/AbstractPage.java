@@ -43,9 +43,10 @@ public abstract class AbstractPage {
         LOGGER.info(name + " was hovered");
     }
 
+
     protected void click(WebElement element) {
         String name = element.getAccessibleName();
-        new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.elementToBeClickable(element)).click();
+        new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(element)).click();
         LOGGER.info(name + " was clicked.");
     }
 

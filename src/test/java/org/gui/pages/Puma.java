@@ -22,15 +22,16 @@ public class Puma extends AbstractTest {
         try {
             HomePage homePage = new HomePage(driver);
             homePage.open();
-//            Assert.assertTrue(homePage.isPageOpened(),"home page isn't opened");
+            Assert.assertTrue(homePage.isPageOpened(),"home page isn't opened");
             homePage.clickStayOnRegion();
             NavigationBar navigationBar = new NavigationBar(driver);
-//        Assert.assertTrue(homePage.isPageOpened(), "Home Page isn't opened");
             Assert.assertTrue(navigationBar.isSearchBarPresent(), "search bar isn't present");
             navigationBar.typeInSearchBar("Bag");
             navigationBar.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
+            Assert.assertTrue(resultPage.isPageOpened(),"result page isn't opened");
             resultPage.printResultItemTexts();
+            Assert.assertEquals(resultPage.getAmountOfItems(),24);
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
             throw new RuntimeException(e);
@@ -49,12 +50,8 @@ public class Puma extends AbstractTest {
             NavigationBar navigationBar = new NavigationBar(driver);
             Assert.assertTrue(navigationBar.isWomenLinkPresent(), "Woman Link isn't present");
             navigationBar.hoverWomenLink();
-            Assert.assertTrue(navigationBar.isShoesElementPresent(),"shoes isn't present");
+//            Assert.assertTrue(navigationBar.isShoesElementPresent(),"shoes isn't present");
             navigationBar.clickShoes();
-            ResultPage resultPage = new ResultPage(driver);
-//            Assert.assertTrue(resultPage.isPageOpened(),"result page isn't opened");
-            Assert.assertEquals(resultPage.getAmountOfItems(), 24);
-            resultPage.printResultItemTexts();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
             throw new RuntimeException(e);
