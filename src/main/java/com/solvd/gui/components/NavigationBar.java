@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.xml.transform.Result;
 import java.time.Duration;
 
 public class NavigationBar extends AbstractPage {
@@ -35,7 +34,6 @@ public class NavigationBar extends AbstractPage {
 
     public void hoverWomenLink() throws InterruptedException {
         hover(women);
-        Thread.sleep(3000);
     }
 
     public boolean isShoesElementPresent() {
@@ -49,15 +47,18 @@ public class NavigationBar extends AbstractPage {
     public boolean isWomenLinkPresent() {
         return isDisplayed(women);
     }
+
     public void typeInSearchBar(String s) {
         sendKeys(searchBar, s);
     }
+
     public ResultPage clickSearch() {
         click(this.searchButton);
         ResultPage resultPage = new ResultPage(getDriver());
-        resultPage.setPageURL(getPageURL()+searchBar.getText());
+        resultPage.setPageURL(getPageURL() + searchBar.getText());
         return resultPage;
     }
+
     public boolean isAccountButtonPresent() {
         return isDisplayed(accountButton);
     }
