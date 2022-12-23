@@ -20,10 +20,11 @@ public class DriverService {
             WebDriverPool.add(new RemoteWebDriver(new URL(selenium_server), desiredCapabilities));
         } catch (MalformedURLException e) {
             LOGGER.error("MalFormedURLException occured while setting up driver");
+            throw new RuntimeException(e);
         }
     }
 
-    public static void afterMethod() {
+    public static void terminateDriver() {
         WebDriver driver = WebDriverPool.get();
         driver.close();
         driver.quit();

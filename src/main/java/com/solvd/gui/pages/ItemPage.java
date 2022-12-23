@@ -10,10 +10,15 @@ public class ItemPage extends AbstractPage {
 
     public ItemPage(WebDriver driver) {
         super(driver);
+        setPageURL(driver.getCurrentUrl());
+    }
+
+    public boolean isCartButtonPresent() {
+        return isDisplayed(cartButton);
     }
 
     public void addToCart() {
         scrollTo(cartButton);
-        cartButton.click();
+        click(cartButton);
     }
 }

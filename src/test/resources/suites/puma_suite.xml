@@ -2,7 +2,7 @@
 <suite verbose="1" name="puma tests" parallel="methods" thread-count="4">
     <test name="puma">
         <classes>
-            <class name="org.gui.pages.Practise"/>
+            <class name="org.gui.pages.Puma"/>
         </classes>
     </test>
 </suite>

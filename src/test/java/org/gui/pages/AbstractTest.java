@@ -17,8 +17,8 @@ public class AbstractTest {
     }
 
     @AfterMethod
-    public void end() {
-        DriverService.afterMethod();
-        LOGGER.info("driver quitted");
+    public void terminate() {
+        DriverService.terminateDriver();
+        LOGGER.info("driver quited");
     }
 }

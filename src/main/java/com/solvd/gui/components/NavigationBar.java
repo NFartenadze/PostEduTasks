@@ -1,6 +1,7 @@
 package com.solvd.gui.components;
 
 import com.solvd.gui.pages.AbstractPage;
+import com.solvd.gui.pages.ResultPage;
 import com.solvd.gui.service.WebDriverPool;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.transform.Result;
 import java.time.Duration;
 
 public class NavigationBar extends AbstractPage {
@@ -18,9 +20,14 @@ public class NavigationBar extends AbstractPage {
     private WebElement men;
     @FindBy(xpath = "//div[@data-test-id='main-nav-bar']/ul//span[contains(text(),'Kids')]")
     private WebElement kids;
-
+    @FindBy(xpath = "//button[@id = \"account-button\"]")
+    private WebElement accountButton;
+    @FindBy(xpath = "//input['data-test-id=\"search-box\"']")
+    private WebElement searchBar;
     @FindBy(xpath = "//a[@data-link-name='Shoes']")
     private WebElement shoesLink;
+    @FindBy(xpath = "//input[@type='search']/../div/button[@type='submit']")
+    private WebElement searchButton;
 
     public NavigationBar(WebDriver driver) {
         super(driver);
@@ -39,7 +46,28 @@ public class NavigationBar extends AbstractPage {
     }
 
     public boolean isWomenLinkPresent() {
-        return women.isDisplayed();
+        return isDisplayed(women);
+    }
+    public void typeInSearchBar(String s) {
+        sendKeys(searchBar, s);
+    }
+    public ResultPage clickSearch() {
+        click(this.searchButton);
+        ResultPage resultPage = new ResultPage(getDriver());
+        resultPage.setPageURL(getPageURL()+searchBar.getText());
+        return resultPage;
+    }
+    public boolean isAccountButtonPresent() {
+        return isDisplayed(accountButton);
+    }
+
+    public AccountPanel clickAccountButton() {
+        click(accountButton);
+        return new AccountPanel(getDriver());
+    }
+
+    public boolean isSearchBarPresent() {
+        return isDisplayed(searchBar);
     }
 
     public void hoverMenLink() {
@@ -48,7 +76,7 @@ public class NavigationBar extends AbstractPage {
 
 
     public boolean isMenLinkPresent() {
-        return men.isDisplayed();
+        return isDisplayed(men);
     }
 
     public void hoverKidsLink() {
@@ -56,6 +84,6 @@ public class NavigationBar extends AbstractPage {
     }
 
     public boolean isKidsLinkPresent() {
-        return kids.isDisplayed();
+        return isDisplayed(kids);
     }
 }
