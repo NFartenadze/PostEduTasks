@@ -1,6 +1,7 @@
 package com.solvd.gui.components;
 
 import com.solvd.gui.pages.AbstractPage;
+import com.solvd.gui.pages.ResultPage;
 import com.solvd.gui.service.WebDriverPool;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.transform.Result;
 import java.time.Duration;
 
 public class NavigationBar extends AbstractPage {
@@ -24,7 +26,7 @@ public class NavigationBar extends AbstractPage {
     private WebElement searchBar;
     @FindBy(xpath = "//a[@data-link-name='Shoes']")
     private WebElement shoesLink;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//input[@type='search']/../div/button[@type='submit']")
     private WebElement searchButton;
 
     public NavigationBar(WebDriver driver) {
@@ -49,9 +51,11 @@ public class NavigationBar extends AbstractPage {
     public void typeInSearchBar(String s) {
         sendKeys(searchBar, s);
     }
-    public void clickSearch() {
+    public ResultPage clickSearch() {
         click(this.searchButton);
-        super.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        ResultPage resultPage = new ResultPage(getDriver());
+        resultPage.setPageURL(getPageURL()+searchBar.getText());
+        return resultPage;
     }
     public boolean isAccountButtonPresent() {
         return isDisplayed(accountButton);

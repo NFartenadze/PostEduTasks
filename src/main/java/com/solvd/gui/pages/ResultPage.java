@@ -1,10 +1,15 @@
 package com.solvd.gui.pages;
 
+import com.solvd.gui.service.Configuration;
+import com.solvd.gui.service.WebDriverPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -24,7 +29,7 @@ public class ResultPage extends AbstractPage {
 
     public ResultPage(WebDriver driver) {
         super(driver);
-        setPageURL(driver.getCurrentUrl());
+        setPageURL(Configuration.getProperty("url")+"/search?q=");
     }
 
     public void closeCookiePanel() {
@@ -37,9 +42,9 @@ public class ResultPage extends AbstractPage {
     }
 
     public void printResultItemTexts() {
+        new WebDriverWait(WebDriverPool.get(), Duration.ofSeconds(5)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='product-list-items']")));
         itemTitles
                 .forEach(e -> logger.info(e.getText()));
-        super.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
 

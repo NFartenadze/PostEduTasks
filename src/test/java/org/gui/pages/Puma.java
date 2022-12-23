@@ -30,7 +30,6 @@ public class Puma extends AbstractTest {
             navigationBar.typeInSearchBar("Bag");
             navigationBar.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
-            Assert.assertEquals(resultPage.getAmountOfItems(), 24);
             resultPage.printResultItemTexts();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
