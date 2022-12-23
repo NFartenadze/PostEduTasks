@@ -29,7 +29,7 @@ public class ResultPage extends AbstractPage {
 
     public ResultPage(WebDriver driver) {
         super(driver);
-        setPageURL(Configuration.getProperty("url")+"/search?q=");
+        setPageURL(Configuration.getProperty("url") + "/search?q=");
     }
 
     public void closeCookiePanel() {
@@ -37,6 +37,7 @@ public class ResultPage extends AbstractPage {
     }
 
     public void clickItem(int i) {
+        new WebDriverWait(WebDriverPool.get(), Duration.ofSeconds(5)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='product-list-items']")));
         scrollTo(items.get(i));
         click(items.get(i));
     }

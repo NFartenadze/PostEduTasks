@@ -12,7 +12,7 @@ public class LanguagePanel extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='location-selector-input']")
     private WebElement searchField;
-    @FindBy(xpath = "//ul[@id='location-results-listbox']/li")
+    @FindBy(xpath = "//ul[@id='location-results-listbox']//a")
     private WebElement searchedLanguage;
 
     @FindBy(xpath = "//*[@id='location-selector-input']/../div[contains(@class,'absolute')]")
@@ -28,11 +28,11 @@ public class LanguagePanel extends AbstractPage {
     }
 
     public boolean checkResult() {
-        return searchedLanguage.isDisplayed();
+        return isDisplayed(searchedLanguage);
     }
 
     public boolean isSearchFieldPresent() {
-        return searchField.isDisplayed();
+        return isDisplayed(searchField);
     }
 
     public void typeInSearch(String s) {
@@ -44,7 +44,7 @@ public class LanguagePanel extends AbstractPage {
     }
 
     public boolean isSearchButtonPresent() {
-        return searchButton.isDisplayed();
+        return isDisplayed(searchButton);
     }
 
 

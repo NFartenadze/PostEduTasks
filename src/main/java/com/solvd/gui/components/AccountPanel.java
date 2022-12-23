@@ -29,25 +29,26 @@ public class AccountPanel extends AbstractPage {
     }
 
     public boolean isLanguagePresent() {
-        return language.isDisplayed();
+        return isDisplayed(language);
     }
 
     public LanguagePanel clickLanguage() {
+//        new WebDriverWait(WebDriverPool.get(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(language));
         click(language);
         logger.info("language button clicked");
         return new LanguagePanel(getDriver());
     }
 
     public boolean isLoginButtonPresent() {
-        return loginButton.isDisplayed();
+        return isDisplayed(loginButton);
     }
 
     public boolean isRegisterButtonPresent() {
-        return registerButton.isDisplayed();
+        return isDisplayed(registerButton);
     }
 
     public boolean isMenuItemPresent(MenuItems i) {
-        return accountMenuItems.get(i.getItemIndex()).isDisplayed();
+        return isDisplayed(accountMenuItems.get(i.getItemIndex()));
     }
 
     public LoginPage clickLoginButton() {

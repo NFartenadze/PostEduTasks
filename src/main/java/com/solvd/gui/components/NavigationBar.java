@@ -37,10 +37,11 @@ public class NavigationBar extends AbstractPage {
     }
 
     public boolean isShoesElementPresent() {
-        return new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(shoesLink)).isDisplayed();
+        return isDisplayed(shoesLink);
     }
 
     public void clickShoes() {
+        new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.visibilityOf(shoesLink));
         click(shoesLink);
     }
 

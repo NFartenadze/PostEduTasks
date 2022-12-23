@@ -22,41 +22,22 @@ public class Puma extends AbstractTest {
         try {
             HomePage homePage = new HomePage(driver);
             homePage.open();
-            Assert.assertTrue(homePage.isPageOpened(),"home page isn't opened");
+            Assert.assertTrue(homePage.isPageOpened(), "home page isn't opened");
             homePage.clickStayOnRegion();
             NavigationBar navigationBar = new NavigationBar(driver);
             Assert.assertTrue(navigationBar.isSearchBarPresent(), "search bar isn't present");
             navigationBar.typeInSearchBar("Bag");
             navigationBar.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
-            Assert.assertTrue(resultPage.isPageOpened(),"result page isn't opened");
+            Assert.assertTrue(resultPage.isPageOpened(), "result page isn't opened");
             resultPage.printResultItemTexts();
-            Assert.assertEquals(resultPage.getAmountOfItems(),24);
+            Assert.assertEquals(resultPage.getAmountOfItems(), 24);
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
             throw new RuntimeException(e);
         }
     }
 
-
-    @Test()
-    public void navigateToWomenShoesSection() throws IOException {
-        WebDriver driver = WebDriverPool.get();
-        try {
-            HomePage homePage = new HomePage(driver);
-            homePage.open();
-            Assert.assertTrue(homePage.isPageOpened(),"home page isn't opened");
-            homePage.clickStayOnRegion();
-            NavigationBar navigationBar = new NavigationBar(driver);
-            Assert.assertTrue(navigationBar.isWomenLinkPresent(), "Woman Link isn't present");
-            navigationBar.hoverWomenLink();
-//            Assert.assertTrue(navigationBar.isShoesElementPresent(),"shoes isn't present");
-            navigationBar.clickShoes();
-        } catch (Exception e) {
-            Screenshot.takeScreenshot(driver);
-            throw new RuntimeException(e);
-        }
-    }
 
     @Test
     public void addItemToCart() throws IOException {
@@ -100,6 +81,8 @@ public class Puma extends AbstractTest {
             //opening registration page
             RegistrationPage registrationPage = accountPanel.clickRegisterButton();
 //            registrationPage.fillRegistrationForm("asdasd","asdasd","asdasd","Asdasd");
+            Assert.assertTrue(registrationPage.isCookiePresent(), "cookie isn't present");
+            registrationPage.closeCookie();
             Assert.assertTrue(registrationPage.isFirstNameFieldPresent(), "first name field isn't present");
             registrationPage.typeFirstName("john");
             Assert.assertTrue(registrationPage.isLastNameFieldPresent(), "last name field isn't present");
@@ -110,6 +93,25 @@ public class Puma extends AbstractTest {
             registrationPage.typePassword("john11");
             Assert.assertTrue(registrationPage.isRegisterButtonPresent(), "register button isn't present");
             registrationPage.clickRegister();
+        } catch (Exception e) {
+            Screenshot.takeScreenshot(driver);
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test()
+    public void navigateToWomenShoesSection() throws IOException {
+        WebDriver driver = WebDriverPool.get();
+        try {
+            HomePage homePage = new HomePage(driver);
+            homePage.open();
+            Assert.assertTrue(homePage.isPageOpened(), "home page isn't opened");
+            homePage.clickStayOnRegion();
+            NavigationBar navigationBar = new NavigationBar(driver);
+            Assert.assertTrue(navigationBar.isWomenLinkPresent(), "Woman Link isn't present");
+            navigationBar.hoverWomenLink();
+            Assert.assertTrue(navigationBar.isShoesElementPresent(), "shoes isn't present");
+            navigationBar.clickShoes();
         } catch (Exception e) {
             Screenshot.takeScreenshot(driver);
             throw new RuntimeException(e);
@@ -132,7 +134,6 @@ public class Puma extends AbstractTest {
             //opening account panel
             AccountPanel accountPanel = navigationBar.clickAccountButton();
             Assert.assertTrue(accountPanel.isLanguagePresent(), "Language isn't present");
-
             //opening language panel
             LanguagePanel languagePanel = accountPanel.clickLanguage();
             Assert.assertTrue(languagePanel.isSearchFieldPresent(), "Search field is missing");
@@ -165,27 +166,28 @@ public class Puma extends AbstractTest {
 
             //login page
             LoginPage loginPage = accountPanel.clickLoginButton();
-            Assert.assertTrue(loginPage.isPageOpened(),"login page isn't opened");
+            Assert.assertTrue(loginPage.isPageOpened(), "login page isn't opened");
             Assert.assertTrue(loginPage.isLoginFieldPresent(), "login field isn't present");
             loginPage.typeLogin("john1148@gmail.com");
             Assert.assertTrue(loginPage.isPasswordFieldPresent(), "password field isn't present");
             loginPage.typePassword("john1148");
             Assert.assertTrue(loginPage.isLoginBtnPresent(), "login button isn't present");
             loginPage.clickLoginBtn();
+            Assert.assertTrue(navigationBar.isAccountButtonPresent(), "Account button isn't present");
             navigationBar.clickAccountButton();
+
             Assert.assertTrue(accountPanel.isMenuItemPresent(AccountPanel.MenuItems.MY_ACCOUNT), "My Account isn't present");
             accountPanel.clickMenuItem(AccountPanel.MenuItems.MY_ACCOUNT);
 
             //account dashboard page
-            DashboardPage dashboardPage = new DashboardPage(accountPanel.getDriver());
-            Assert.assertTrue(dashboardPage.isPageOpened(),"dashboard page isn't opened");
+            DashboardPage dashboardPage = new DashboardPage(driver);
+            Assert.assertTrue(dashboardPage.isPageOpened(), "dashboard page isn't opened");
             Assert.assertTrue(dashboardPage.isAddNewPresent(), "add new button isn't present");
 
             //address book page
             AddressBookPage addressBookPage = dashboardPage.clickAddNew();
 //            addressBookPage.addNewAddress("Default", AddressBookPage.Countries.CANADA,"john","doe","12123",
 //                    "etc","smt","123123",States.ALASKA,"1312312312");
-
             Assert.assertTrue(addressBookPage.isAddressTitleFieldPresent(), "address title field isn't present");
             addressBookPage.typeAddressTitle("example");
             addressBookPage.selectCountry(2);

@@ -20,6 +20,8 @@ public class RegistrationPage extends AbstractPage {
     private WebElement passwordField;
     @FindBy(xpath = "//button[@data-test-id='register']")
     private WebElement registerButton;
+    @FindBy(css = "#cookie-banner-close-btn")
+    private WebElement cookieCloserButton;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -32,6 +34,14 @@ public class RegistrationPage extends AbstractPage {
 
     public boolean isLastNameFieldPresent() {
         return isDisplayed(lastNameField);
+    }
+
+    public void closeCookie() {
+        click(cookieCloserButton);
+    }
+
+    public boolean isCookiePresent() {
+        return isDisplayed(cookieCloserButton);
     }
 
     public boolean isEmailFieldPresent() {
@@ -67,7 +77,7 @@ public class RegistrationPage extends AbstractPage {
         click(registerButton);
     }
 
-    public void fillRegistrationForm(String firstName, String lastName, String email, String password){
+    public void fillRegistrationForm(String firstName, String lastName, String email, String password) {
         isFirstNameFieldPresent();
         typeFirstName(firstName);
         typeLastName(lastName);
