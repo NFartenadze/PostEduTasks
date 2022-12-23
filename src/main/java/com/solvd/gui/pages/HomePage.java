@@ -17,7 +17,7 @@ public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//button[@data-test-id='location-check-stay-on-country']")
     private WebElement stayOnRegion;
-    @FindBy(xpath = "//div[@data-test-id='main-nav-bar']/ul")
+    @FindBy(xpath = "//div[@data-test-id='main-nav-bar']")
     private NavigationBar navigationBar;
     public HomePage(WebDriver driver) {
         super(driver);

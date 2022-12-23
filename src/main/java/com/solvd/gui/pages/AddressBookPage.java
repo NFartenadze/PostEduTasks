@@ -77,6 +77,9 @@ public class AddressBookPage extends AbstractPage {
     public void typeLastName(String s) {
         sendKeys(lastName, s);
     }
+//    public boolean isStatePresent(States s){
+//        return true;
+//    }
 
     public boolean isFirstNameFieldPresent() {
         return isDisplayed(firstName);
@@ -130,9 +133,47 @@ public class AddressBookPage extends AbstractPage {
         sendKeys(postalCode, s);
     }
 
+    public void addNewAddress(String title, Countries country, String firstName, String lastName, String streetNumber, String companyInfo, String city, String postalCode, States state, String phoneNumber){
+        typeAddressTitle(title);
+        selectCountry(country.getCountry());
+        typeFirstName(firstName);
+        typeLastName(lastName);
+        typeStreetNumber(streetNumber);
+        typeCompanyInfo(companyInfo);
+        typeCity(city);
+        typePostalCode(postalCode);
+        selectState(state);
+        typePhoneNumber(phoneNumber);
+    }
+    public void addNewDefaultAddress(String title, Countries country, String firstName, String lastName, String streetNumber, String companyInfo, String city, String postalCode, States state, String phoneNumber){
+        typeAddressTitle(title);
+        selectCountry(country.getCountry());
+        typeFirstName(firstName);
+        typeLastName(lastName);
+        typeStreetNumber(streetNumber);
+        typeCompanyInfo(companyInfo);
+        typeCity(city);
+        typePostalCode(postalCode);
+        selectState(state);
+        typePhoneNumber(phoneNumber);
+        checkMakeDefault();
+    }
     public void selectCountry(int i) {
         country.get(i).click();
         country.get(i).click();
+    }
+    public enum Countries{
+        UNITED_STATES(1),
+        CANADA(2)
+        ;
+        private int country;
+        Countries(int country){
+            this.country = country;
+        }
+
+        public int getCountry() {
+            return country;
+        }
     }
 
 }

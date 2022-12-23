@@ -66,4 +66,12 @@ public class RegistrationPage extends AbstractPage {
         scrollTo(registerButton);
         click(registerButton);
     }
+
+    public void fillRegistrationForm(String firstName, String lastName, String email, String password){
+        isFirstNameFieldPresent();
+        typeFirstName(firstName);
+        typeLastName(lastName);
+        typeEmail(email);
+        typePassword(password);
+    }
 }

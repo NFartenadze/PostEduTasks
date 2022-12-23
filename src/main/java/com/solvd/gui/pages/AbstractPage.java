@@ -3,9 +3,7 @@ package com.solvd.gui.pages;
 import com.solvd.gui.service.WebDriverPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -84,7 +82,7 @@ public abstract class AbstractPage {
         this.pageURL = pageURL;
     }
 
-//    public boolean isPageOpened(){
-//        return new WebDriverWait(WebDriverPool.get(), TIMEOUT).until(ExpectedConditions.);
-//    };
+    public boolean isPageOpened () {
+        return new WebDriverWait(WebDriverPool.get(),TIMEOUT).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[@data-test-id=\"main-nav-home-link\"]")))).isDisplayed();
+    }
 }
