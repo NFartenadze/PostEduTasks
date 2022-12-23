@@ -15,56 +15,27 @@ public class HomePage extends AbstractPage {
 
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
-    @FindBy(xpath = "//button[@id = \"account-button\"]")
-    private WebElement accountButton;
-    @FindBy(xpath = "//input['data-test-id=\"search-box\"']")
-    private WebElement searchBar;
-
     @FindBy(xpath = "//button[@data-test-id='location-check-stay-on-country']")
     private WebElement stayOnRegion;
-
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement searchButton;
     @FindBy(xpath = "//div[@data-test-id='main-nav-bar']/ul")
-    private WebElement navigationBar;
-
+    private NavigationBar navigationBar;
     public HomePage(WebDriver driver) {
         super(driver);
         setPageURL(Configuration.getProperty("url"));
     }
 
-    public boolean isAccountButtonPresent() {
-        return isDisplayed(accountButton);
-    }
-
-    public AccountPanel clickAccountButton() {
-        click(accountButton);
-        accountButton.sendKeys("");
-        return new AccountPanel(getDriver());
-    }
-
-    public boolean isSearchBarPresent() {
-        return isDisplayed(searchBar);
-    }
 
     public void clickStayOnRegion() {
         click(stayOnRegion);
     }
 
-    public void typeInSearchBar(String s) {
-//        sendKeys(searchBar, s);
-        sendKeys(searchBar, s);
-    }
 
-    public NavigationBar hoverNavigationBar() {
-        hover(navigationBar);
-        return new NavigationBar(getDriver());
+
+    public NavigationBar getNavigationBar() {
+        return navigationBar;
     }
 
 
-    public void clickSearch() {
-        click(this.searchButton);
-        super.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
+
 
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 public class RegistrationPage extends AbstractPage {
     private static final Logger logger = LogManager.getLogger(RegistrationPage.class);
 
-    @FindBy(xpath = "//input[@id='first-name']")
+    @FindBy(xpath = "//input[@name='firstName']")
     private WebElement firstNameField;
     @FindBy(xpath = "//input[@id='last-name']")
     private WebElement lastNameField;
@@ -27,23 +27,23 @@ public class RegistrationPage extends AbstractPage {
     }
 
     public boolean isFirstNameFieldPresent() {
-        return firstNameField.isDisplayed();
+        return isDisplayed(firstNameField);
     }
 
     public boolean isLastNameFieldPresent() {
-        return lastNameField.isDisplayed();
+        return isDisplayed(lastNameField);
     }
 
     public boolean isEmailFieldPresent() {
-        return emailField.isDisplayed();
+        return isDisplayed(emailField);
     }
 
     public boolean isPasswordFieldPresent() {
-        return passwordField.isDisplayed();
+        return isDisplayed(passwordField);
     }
 
     public boolean isRegisterButtonPresent() {
-        return registerButton.isDisplayed();
+        return isDisplayed(registerButton);
     }
 
     public void typeFirstName(String s) {
@@ -63,6 +63,7 @@ public class RegistrationPage extends AbstractPage {
     }
 
     public void clickRegister() {
+        scrollTo(registerButton);
         click(registerButton);
     }
 }

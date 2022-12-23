@@ -22,10 +22,11 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
+            NavigationBar navigationBar = homePage.getNavigationBar();
 //        Assert.assertTrue(homePage.isPageOpened(), "Home Page isn't opened");
-            Assert.assertTrue(homePage.isSearchBarPresent(), "search bar isn't present");
-            homePage.typeInSearchBar("Bag");
-            homePage.clickSearch();
+            Assert.assertTrue(navigationBar.isSearchBarPresent(), "search bar isn't present");
+            navigationBar.typeInSearchBar("Bag");
+            navigationBar.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
             Assert.assertEquals(resultPage.getAmountOfItems(), 24);
             resultPage.printResultItemTexts();
@@ -43,7 +44,7 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
-            NavigationBar navigationBar = homePage.hoverNavigationBar();
+            NavigationBar navigationBar = homePage.getNavigationBar();
             Assert.assertTrue(navigationBar.isWomenLinkPresent(), "Woman Link isn't present");
             navigationBar.hoverWomenLink();
             navigationBar.clickShoes();
@@ -60,9 +61,10 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
-            Assert.assertTrue(homePage.isSearchBarPresent(), "search bar isn't present");
-            homePage.typeInSearchBar("shoes");
-            homePage.clickSearch();
+            NavigationBar navigationBar = homePage.getNavigationBar();
+            Assert.assertTrue(navigationBar.isSearchBarPresent(), "search bar isn't present");
+            navigationBar.typeInSearchBar("shoes");
+            navigationBar.clickSearch();
             ResultPage resultPage = new ResultPage(driver);
             resultPage.closeCookiePanel();
             resultPage.clickItem(0);
@@ -81,9 +83,16 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
-            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
-            AccountPanel accountPanel = homePage.clickAccountButton();
+
+            //accessing navbar
+            NavigationBar navigationBar = homePage.getNavigationBar();
+            Assert.assertTrue(navigationBar.isAccountButtonPresent(), "Account button isn't present");
+
+            //opening account panel
+            AccountPanel accountPanel = navigationBar.clickAccountButton();
             Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Register button isn't present");
+
+            //opening registration page
             RegistrationPage registrationPage = accountPanel.clickRegisterButton();
             Assert.assertTrue(registrationPage.isFirstNameFieldPresent(), "first name field isn't present");
             registrationPage.typeFirstName("john");
@@ -108,9 +117,16 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
-            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
-            AccountPanel accountPanel = homePage.clickAccountButton();
+
+            //accessing navigation bar
+            NavigationBar navigationBar = homePage.getNavigationBar();
+            Assert.assertTrue(navigationBar.isAccountButtonPresent(), "Account button isn't present");
+
+            //opening account panel
+            AccountPanel accountPanel = navigationBar.clickAccountButton();
             Assert.assertTrue(accountPanel.isLanguagePresent(), "Language isn't present");
+
+            //opening language panel
             LanguagePanel languagePanel = accountPanel.clickLanguage();
             Assert.assertTrue(languagePanel.isSearchFieldPresent(), "Search field is missing");
             languagePanel.typeInSearch("spanish");
@@ -124,22 +140,6 @@ public class Puma extends AbstractTest {
         }
     }
 
-    @Test
-    public void registrationForm() throws IOException {
-        WebDriver driver = WebDriverPool.get();
-        try {
-            HomePage homePage = new HomePage(driver);
-            homePage.open();
-            homePage.clickStayOnRegion();
-            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
-            AccountPanel accountPanel = homePage.clickAccountButton();
-            Assert.assertTrue(accountPanel.isRegisterButtonPresent(), "Registration Button isn't present");
-            RegistrationPage registrationPage = accountPanel.clickRegisterButton();
-        } catch (Exception e) {
-            Screenshot.takeScreenshot(driver);
-            throw new RuntimeException(e);
-        }
-    }
 
     @Test
     public void addNewAddress() throws IOException {
@@ -148,10 +148,11 @@ public class Puma extends AbstractTest {
             HomePage homePage = new HomePage(driver);
             homePage.open();
             homePage.clickStayOnRegion();
-            Assert.assertTrue(homePage.isAccountButtonPresent(), "Account button isn't present");
+            NavigationBar navigationBar = homePage.getNavigationBar();
+            Assert.assertTrue(navigationBar.isAccountButtonPresent(), "Account button isn't present");
 
             //account panel
-            AccountPanel accountPanel = homePage.clickAccountButton();
+            AccountPanel accountPanel = navigationBar.clickAccountButton();
             Assert.assertTrue(accountPanel.isLoginButtonPresent(), "login button isn't present");
 
             //login page
@@ -162,7 +163,7 @@ public class Puma extends AbstractTest {
             loginPage.typePassword("john1148");
             Assert.assertTrue(loginPage.isLoginBtnPresent(), "login button isn't present");
             loginPage.clickLoginBtn();
-            homePage.clickAccountButton();
+            navigationBar.clickAccountButton();
             Assert.assertTrue(accountPanel.isMenuItemPresent(AccountPanel.MenuItems.MY_ACCOUNT), "My Account isn't present");
             accountPanel.clickMenuItem(AccountPanel.MenuItems.MY_ACCOUNT);
 

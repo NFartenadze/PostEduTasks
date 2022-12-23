@@ -18,9 +18,14 @@ public class NavigationBar extends AbstractPage {
     private WebElement men;
     @FindBy(xpath = "//div[@data-test-id='main-nav-bar']/ul//span[contains(text(),'Kids')]")
     private WebElement kids;
-
+    @FindBy(xpath = "//button[@id = \"account-button\"]")
+    private WebElement accountButton;
+    @FindBy(xpath = "//input['data-test-id=\"search-box\"']")
+    private WebElement searchBar;
     @FindBy(xpath = "//a[@data-link-name='Shoes']")
     private WebElement shoesLink;
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement searchButton;
 
     public NavigationBar(WebDriver driver) {
         super(driver);
@@ -39,7 +44,26 @@ public class NavigationBar extends AbstractPage {
     }
 
     public boolean isWomenLinkPresent() {
-        return women.isDisplayed();
+        return isDisplayed(women);
+    }
+    public void typeInSearchBar(String s) {
+        sendKeys(searchBar, s);
+    }
+    public void clickSearch() {
+        click(this.searchButton);
+        super.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
+    public boolean isAccountButtonPresent() {
+        return isDisplayed(accountButton);
+    }
+
+    public AccountPanel clickAccountButton() {
+        click(accountButton);
+        return new AccountPanel(getDriver());
+    }
+
+    public boolean isSearchBarPresent() {
+        return isDisplayed(searchBar);
     }
 
     public void hoverMenLink() {
@@ -48,7 +72,7 @@ public class NavigationBar extends AbstractPage {
 
 
     public boolean isMenLinkPresent() {
-        return men.isDisplayed();
+        return isDisplayed(men);
     }
 
     public void hoverKidsLink() {
@@ -56,6 +80,6 @@ public class NavigationBar extends AbstractPage {
     }
 
     public boolean isKidsLinkPresent() {
-        return kids.isDisplayed();
+        return isDisplayed(kids);
     }
 }
