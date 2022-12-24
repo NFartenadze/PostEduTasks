@@ -17,7 +17,7 @@ public class Puma extends AbstractTest {
 
 
     @Test
-    public void searchBag() throws IOException {
+    public void search() throws IOException {
         WebDriver driver = WebDriverPool.get();
         try {
             HomePage homePage = new HomePage(driver);
