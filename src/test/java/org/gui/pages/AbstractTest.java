@@ -1,6 +1,6 @@
 package org.gui.pages;
 
-import com.solvd.gui.service.DriverService;
+import com.solvd.puma.gui.service.DriverService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;

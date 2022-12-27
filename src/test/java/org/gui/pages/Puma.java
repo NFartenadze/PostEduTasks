@@ -1,12 +1,12 @@
 package org.gui.pages;
 
-import com.solvd.gui.components.AccountPanel;
-import com.solvd.gui.components.LanguagePanel;
-import com.solvd.gui.components.NavigationBar;
-import com.solvd.gui.components.States;
-import com.solvd.gui.pages.*;
-import com.solvd.gui.service.Screenshot;
-import com.solvd.gui.service.WebDriverPool;
+import com.solvd.puma.gui.components.AccountPanel;
+import com.solvd.puma.gui.components.LanguagePanel;
+import com.solvd.puma.gui.components.NavigationBar;
+import com.solvd.puma.gui.components.States;
+import com.solvd.puma.gui.pages.*;
+import com.solvd.puma.gui.service.Screenshot;
+import com.solvd.puma.gui.service.WebDriverPool;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
